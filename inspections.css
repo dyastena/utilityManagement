@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -11,11 +12,11 @@ body {
 
 /* Sidebar Styles */
 .sidebar {
-    position: fixed; /* Fix the sidebar in place */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Default expanded width */
-    height: 100vh; /* Full height of the viewport */
+    width: 250px;
+    height: 100vh;
     background: #fff;
     border-right: 1px solid #ddd;
     display: flex;
@@ -23,40 +24,40 @@ body {
     align-items: center;
     padding: 1.5rem 1rem;
     gap: 20px;
-    z-index: 1000; /* Ensure it stays above other elements */
-    transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for width and padding */
+    z-index: 1000;
+    transition: width 0.3s ease, padding 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] {
-    width: 80px; /* Collapsed width */
-    padding: 1rem 0; /* Adjust padding for collapsed state */
+    width: 80px;
+    padding: 1rem 0;
 }
 
 /* Logo Button */
 .logo-container {
-    position: absolute; /* Position it relative to the sidebar */
-    top: 10px; /* Move it to the upper side */
-    right: -20px; /* Overlap the right edge of the sidebar */
+    position: absolute;
+    top: 10px;
+    right: -20px;
     width: 40px;
     height: 40px;
-    background-color: #fff; /* Make it stand out */
-    border: 2px solid #ddd; /* Add a border for emphasis */
-    border-radius: 50%; /* Make it circular */
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer; /* Indicate it's clickable */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .logo-container:hover {
-    background-color: #e0f0ff; /* Highlight on hover */
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    background-color: #e0f0ff;
+    transform: scale(1.1);
 }
 
 .logo-img {
-    width: 30px; /* Adjust logo size */
+    width: 30px;
     height: auto;
 }
 
@@ -64,14 +65,14 @@ body {
     font-weight: bold;
     font-size: 1.5rem;
     color: #000;
-    margin-bottom: 20px; /* Add spacing below the text */
+    margin-bottom: 20px;
     display: inline-block;
-    transition: opacity 0.3s ease; /* Smooth fade-out for text */
+    transition: opacity 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] .logo-text {
-    opacity: 0; /* Hide the text when collapsed */
-    pointer-events: none; /* Prevent interaction with hidden text */
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Profile Section */
@@ -81,20 +82,20 @@ body {
 }
 
 .profile .avatar {
-    width: 80px; /* Set the size of the circle */
-    height: 80px; /* Set the size of the circle */
-    border-radius: 50%; /* Make it a circle */
-    overflow: hidden; /* Ensure the image is cropped to fit the circle */
-    margin: 0 auto 10px; /* Center the avatar and add spacing below */
-    border: 2px solid #ddd; /* Optional: Add a border around the circle */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    border: 2px solid #ddd;
 }
 
 .profile .avatar img {
-    width: 100%; /* Ensure the image fills the circle */
-    height: 100%; /* Ensure the image fills the circle */
-    object-fit: cover; /* Crop the image to fit the circle */
-    object-position: center; /* Focus on the center of the image */
-    border-radius: 50%; /* Ensure the image itself is circular */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }
 
 .profile .username {
@@ -110,39 +111,39 @@ body {
 }
 
 .sidebar[data-collapsed="true"] .profile {
-    opacity: 0; /* Hide the profile section when collapsed */
-    pointer-events: none; /* Prevent interaction with hidden elements */
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Navigation Links */
 .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Default spacing between links */
+    gap: 15px;
     width: 100%;
-    align-items: center; /* Center icons when collapsed */
-    transition: gap 0.3s ease; /* Smooth transition for spacing */
+    align-items: center;
+    transition: gap 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] .nav-links {
     margin-top: -200px;
-    gap: 25px; /* Increase spacing between icons when collapsed */
+    gap: 25px;
 }
 
 .nav-links a {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align icons and text when expanded */
+    justify-content: flex-start;
     text-decoration: none;
     color: #333;
     padding: 10px;
     border-radius: 10px;
-    transition: background-color 0.3s ease, justify-content 0.3s ease; /* Smooth transition for alignment */
-    width: 100%; /* Ensure clickable area spans the sidebar width */
+    transition: background-color 0.3s ease, justify-content 0.3s ease;
+    width: 100%;
 }
 
 .sidebar[data-collapsed="true"] .nav-links a {
-    justify-content: center; /* Center icons when text is hidden */
+    justify-content: center;
 }
 
 .nav-links a.active,
@@ -153,57 +154,57 @@ body {
 
 /* Icon and Text Transitions */
 .nav-icon {
-    font-size: 24px; /* Increase icon size for better visibility */
-    margin-right: 10px; /* Add spacing between icon and text */
-    transition: margin-right 0.3s ease; /* Smooth transition for spacing */
+    font-size: 24px;
+    margin-right: 10px;
+    transition: margin-right 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] .nav-icon {
-    margin-right: 0; /* Remove spacing when collapsed */
+    margin-right: 0;
 }
 
 .nav-text {
-    transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease; /* Smooth fade-out for text */
+    transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] .nav-text {
-    opacity: 0; /* Hide the text when collapsed */
-    visibility: hidden; /* Prevent interaction with hidden text */
-    width: 0; /* Collapse the text width */
-    overflow: hidden; /* Prevent text overflow */
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
 }
 
 /* Logout Button */
 .logout-btn {
-  margin-top: auto; /* Push the button to the bottom */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #b2dfdb;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.3s ease; /* Smooth fade-out for button */
+    margin-top: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #b2dfdb;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] .logout-btn {
-    opacity: 0; /* Hide the logout button when collapsed */
-    pointer-events: none; /* Prevent interaction with hidden button */
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Main Content */
 .main {
-    margin-left: 280px; /* Default margin to match the sidebar width */
+    margin-left: 280px;
     padding: 2rem;
     background-color: #f8fdfd;
     flex-grow: 1;
-    overflow-y: auto; /* Enable scrolling only for the main content */
-    height: 100vh; /* Full height of the viewport */
-    box-sizing: border-box; /* Include padding and border in height calculation */
-    transition: margin-left 0.3s ease; /* Smooth transition for margin adjustment */
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+    transition: margin-left 0.3s ease;
 }
 
 .sidebar[data-collapsed="true"] ~ .main {
-    margin-left: 80px; /* Adjust margin when the sidebar is collapsed */
+    margin-left: 80px;
 }
 
 /* Header Styling */
@@ -225,8 +226,8 @@ body {
 
 /* Inspection Form Container */
 .inspection-form {
-    max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -234,24 +235,28 @@ body {
 
 /* Grouped Input Styles */
 .form-grouped {
-    display: flex; /* Use flexbox for layout */
-    gap: 1rem; /* Add spacing between child elements */
-    width: 100%; /* Ensure the container spans the full width */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* Default layout for smaller screens */
+.form-grouped {
+    flex-direction: column;
+}
+
+/* Layout for larger screens (768px and above) */
+@media (min-width: 768px) {
+    .form-grouped {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
 
 .form-group {
-    flex: 1; /* Allow each child to take up equal space */
-    display: flex;
-    flex-direction: column; /* Keep label and input stacked vertically */
-}
-
-.form-group select,
-.form-group input {
-    width: 100%; /* Ensure inputs/selects span the full width of their container */
-}
-
-/* Grouped Input Styles */
-.inspection-form .form-group {
+    flex: 1 1 calc(33.33% - 1rem);
+    min-width: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -298,22 +303,6 @@ body {
     pointer-events: none;
 }
 
-/* Rooms Section */
-.rooms {
-    margin-top: 10px;
-}
-
-.rooms h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #000;
-}
-
-/* Room Block */
-.room {
-    margin-bottom: 20px;
-}
-
 /* Radio Button Options */
 .status-options {
     display: flex;
@@ -347,9 +336,13 @@ body {
     background-color: #dc3545;
 }
 
+.status-dot.needs-attention {
+    background-color: #ffc107;
+}
+
 /* Comment Input */
 .room input[type="text"] {
-    width: 100%;
+    width: 600px;
     padding: 8px;
     font-size: 1rem;
     border: 1px solid #ccc;
@@ -362,7 +355,8 @@ body {
 /* Submit Button */
 .submit-btn {
     display: block;
-    width: 100%;
+    margin: 20px auto;
+    width: 30%;
     padding: 14px;
     font-size: 1rem;
     font-weight: 600;
@@ -387,4 +381,84 @@ body {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
+}
+
+/* Styling for each room */
+.room {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for rooms */
+.room:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for room labels */
+.room label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Styling for the comment input */
+.room input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    box-sizing: border-box;
+}
+
+/* Styling for status options */
+.status-options {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* Styling for status buttons */
+.status-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.status-btn {
+    padding: 10px 15px;
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: white; /* Default white background */
+    color: black; /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.status-btn.clean.active {
+    background-color: #c9fae0; /* Green for Clean */
+    color: black;
+}
+
+.status-btn.needs-cleaning.active {
+    background-color: #fccfcf; /* Red for Needs Cleaning */
+    color: black;
+}
+
+.status-btn.needs-attention.active {
+    background-color: #f8f2be; /* Yellow for Needs Attention */
+    color: black;
+}
+
+.status-btn.active {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow to the active button */
+    transform: scale(1.05); /* Slightly enlarge the active button */
 }
