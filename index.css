@@ -1,0 +1,267 @@
+/* General reset and font */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f5f5f5;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Main background container */
+.background {
+  height: 100vh;
+  background: #b2dfdb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 0; /* Create base stacking context */
+}
+
+/* Decorative ellipse background */
+.background-ellipse {
+  position: absolute;
+  top: -20%;
+  left: 0%;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Logo in top-left corner */
+.logo-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  left: 50px;
+  z-index: 1;
+}
+
+.logo-img {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+}
+
+/* Login box */
+.login-container {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 5px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  color: #888;
+  font-size: 0.7rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 0 0 40px;
+  font-size: 1.5rem;
+  text-align: left;
+  letter-spacing: 1px;
+  font-weight: bolder;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 5px 5px;
+  font-size: 0.7rem;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  box-sizing: border-box;
+}
+
+/* Style for the file input label */
+label[for="image"] {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Style for the file input field */
+#image {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the file input field */
+#image:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Focus effect for the file input field */
+#image:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Style for the error message */
+.error-msg {
+  color: red;
+  margin-top: 10px;
+  display: none; /* Initially hidden */
+  font-size: 0.7rem;
+  margin: 5px 0;
+  text-align: left;
+}
+
+/* Password input with toggle button */
+.password-wrapper {
+  position: relative;
+  width: 100%; /* Match the input width */
+  margin-bottom: 10px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 50px; /* Leave space for the button */
+  box-sizing: border-box;
+}
+
+.toggle-password-inside {
+  position: absolute;
+  right: 10px;
+  top: -5%;
+  background: none;
+  border: none;
+  color: #0077cc;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  height: 100%;
+}
+
+.toggle-password-inside:hover {
+  text-decoration: underline;
+  color: #005fa3;
+}
+
+.toggle-password-btn {
+  background: none;
+  border: none;
+  color: #0077cc;
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 0;
+  margin: -5px 0 10px;
+  text-align: left;
+  display: inline-block;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.toggle-password-btn:hover {
+  text-decoration: underline;
+  color: #005fa3;
+}
+
+.eye-icon {
+  max-width: 18px;   /* Maximum width */
+  max-height: 18px;  /* Maximum height */
+  width: auto;       /* Maintain aspect ratio */
+  height: auto;      /* Maintain aspect ratio */
+}
+
+.sign-up {
+  display: block;
+  margin-top: -20px;
+  font-size: 0.8rem;
+  color: #555;
+  text-decoration: none;
+  transition: opacity 0.3s ease, text-decoration 0.3s ease;
+}
+
+.sign-up:hover {
+  text-decoration: underline;
+  opacity: 0.7;
+}
+
+button.sbmt {
+  display: block;
+  margin: 30px auto; /* Center the button horizontally */
+  width: 65%; /* Adjust the width as needed */
+  padding: 10px;
+  letter-spacing: 2px;
+  background-color: #9bccf4;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.sbmt:hover {
+  background-color: #44a5f5;
+  color: #fff;
+}
+
+.forg{
+  display: block;
+  margin-top: -9px;
+  text-align: right;
+  font-size: 0.7rem;
+  color: #555;
+  text-decoration: none;
+  transition: opacity 0.3s ease, text-decoration 0.3s ease;
+}
+
+/* Optional: Style for the submit button */
+.sbmt {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sbmt:hover {
+  background-color: #0056b3;
+}
+

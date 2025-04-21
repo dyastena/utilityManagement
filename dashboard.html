@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - NeatWare</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+        <div class="logo-container">
+            <img src="source/neatWareLogo.png" alt="NeatWare Logo" class="logo-img">
+            <div class="logo-text">NeatWare</div>
+        </div>
+      <div class="profile">
+        <div class="avatar"></div>
+        <p class="username">Najil Bumacod</p>
+        <p class="email">name@gmail.com</p>
+      </div>
+      <nav class="nav-links">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#">Inspections</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+      </nav>
+      <form action="logout.php" method="POST">
+        <button type="submit" class="logout-btn">Log Out</button>
+      </form>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <h1>Dashboard</h1>
+        <div class="date">
+          <span id="today-date">21, April 2022</span>
+          <img src="source/calendar.png" alt="Calendar Icon" />
+        </div>
+      </header>
+
+      <section class="welcome">
+        <h2>Hello, Najil</h2>
+        <p>Track your progress here!</p>
+        <div class="cards">
+          <div class="card green">
+            <img src="source/check.png" alt="Check" />
+            <p>Task completed today</p>
+            <h3>4</h3>
+          </div>
+          <div class="card red">
+            <img src="source/warning.png" alt="Warning" />
+            <p>Missed / Incomplete Task</p>
+            <h3>2</h3>
+          </div>
+          <div class="card yellow">
+            <img src="source/issue.png" alt="Issues" />
+            <p>Issues</p>
+            <h3>2</h3>
+          </div>
+          <div class="card blue">
+            <img src="source/personnel.png" alt="Personnel" />
+            <p>Personnel on Duty</p>
+            <h3>7</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-section">
+        <h3>Floor Status Summary</h3>
+        <div class="time-select">AM | <span>9:00</span></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Floor</th>
+              <th>Status</th>
+              <th>Issues Reported</th>
+              <th>Last Cleaned</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="status-clean">
+              <td>1</td>
+              <td>Clean</td>
+              <td>None</td>
+              <td>9:00 am</td>
+            </tr>
+            <tr class="status-check">
+              <td>2</td>
+              <td>Needs Check</td>
+              <td>Wet floor in CR</td>
+              <td>9:00 am</td>
+            </tr>
+            <tr class="status-missed">
+              <td>3</td>
+              <td>Missed</td>
+              <td>No log submitted</td>
+              <td>&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

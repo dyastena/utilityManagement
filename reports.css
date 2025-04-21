@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed; /* Fix the sidebar in place */
+    top: 0;
+    left: 0;
+    width: 250px; /* Default expanded width */
+    height: 100vh; /* Full height of the viewport */
+    background: #fff;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    gap: 20px;
+    z-index: 1000; /* Ensure it stays above other elements */
+    transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for width and padding */
+}
+
+.sidebar[data-collapsed="true"] {
+    width: 80px; /* Collapsed width */
+    padding: 1rem 0; /* Adjust padding for collapsed state */
+}
+
+/* Logo Button */
+.logo-container {
+    position: absolute; /* Position it relative to the sidebar */
+    top: 10px; /* Move it to the upper side */
+    right: -20px; /* Overlap the right edge of the sidebar */
+    width: 40px;
+    height: 40px;
+    background-color: #fff; /* Make it stand out */
+    border: 2px solid #ddd; /* Add a border for emphasis */
+    border-radius: 50%; /* Make it circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* Indicate it's clickable */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logo-container:hover {
+    background-color: #e0f0ff; /* Highlight on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.logo-img {
+    width: 30px; /* Adjust logo size */
+    height: auto;
+}
+
+.logo-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: 20px; /* Add spacing below the text */
+    display: inline-block;
+    transition: opacity 0.3s ease; /* Smooth fade-out for text */
+}
+
+.sidebar[data-collapsed="true"] .logo-text {
+    opacity: 0; /* Hide the text when collapsed */
+    pointer-events: none; /* Prevent interaction with hidden text */
+}
+
+/* Profile Section */
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile .avatar {
+    width: 80px; /* Set the size of the circle */
+    height: 80px; /* Set the size of the circle */
+    border-radius: 50%; /* Make it a circle */
+    overflow: hidden; /* Ensure the image is cropped to fit the circle */
+    margin: 0 auto 10px; /* Center the avatar and add spacing below */
+    border: 2px solid #ddd; /* Optional: Add a border around the circle */
+}
+
+.profile .avatar img {
+    width: 100%; /* Ensure the image fills the circle */
+    height: 100%; /* Ensure the image fills the circle */
+    object-fit: cover; /* Crop the image to fit the circle */
+    object-position: center; /* Focus on the center of the image */
+    border-radius: 50%; /* Ensure the image itself is circular */
+}
+
+.profile .username {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #333;
+}
+
+.profile .email {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.sidebar[data-collapsed="true"] .profile {
+    opacity: 0; /* Hide the profile section when collapsed */
+    pointer-events: none; /* Prevent interaction with hidden elements */
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Default spacing between links */
+    width: 100%;
+    align-items: center; /* Center icons when collapsed */
+    transition: gap 0.3s ease; /* Smooth transition for spacing */
+}
+
+.sidebar[data-collapsed="true"] .nav-links {
+    margin-top: -200px;
+    gap: 25px; /* Increase spacing between icons when collapsed */
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align icons and text when expanded */
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, justify-content 0.3s ease; /* Smooth transition for alignment */
+    width: 100%; /* Ensure clickable area spans the sidebar width */
+}
+
+.sidebar[data-collapsed="true"] .nav-links a {
+    justify-content: center; /* Center icons when text is hidden */
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    background-color: #e0f0ff;
+    font-weight: bold;
+}
+
+/* Icon and Text Transitions */
+.nav-icon {
+    font-size: 24px; /* Increase icon size for better visibility */
+    margin-right: 10px; /* Add spacing between icon and text */
+    transition: margin-right 0.3s ease; /* Smooth transition for spacing */
+}
+
+.sidebar[data-collapsed="true"] .nav-icon {
+    margin-right: 0; /* Remove spacing when collapsed */
+}
+
+.nav-text {
+    transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease; /* Smooth fade-out for text */
+}
+
+.sidebar[data-collapsed="true"] .nav-text {
+    opacity: 0; /* Hide the text when collapsed */
+    visibility: hidden; /* Prevent interaction with hidden text */
+    width: 0; /* Collapse the text width */
+    overflow: hidden; /* Prevent text overflow */
+}
+
+/* Logout Button */
+.logout-btn {
+  margin-top: auto; /* Push the button to the bottom */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #b2dfdb;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.3s ease; /* Smooth fade-out for button */
+}
+
+.sidebar[data-collapsed="true"] .logout-btn {
+    opacity: 0; /* Hide the logout button when collapsed */
+    pointer-events: none; /* Prevent interaction with hidden button */
+}
+
+/* Main Content */
+.main {
+    margin-left: 280px; /* Default margin to match the sidebar width */
+    padding: 2rem;
+    background-color: #f8fdfd;
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling only for the main content */
+    height: 100vh; /* Full height of the viewport */
+    box-sizing: border-box; /* Include padding and border in height calculation */
+    transition: margin-left 0.3s ease; /* Smooth transition for margin adjustment */
+}
+
+.sidebar[data-collapsed="true"] ~ .main {
+    margin-left: 80px; /* Adjust margin when the sidebar is collapsed */
+}
+
+/* Header Styles */
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 0.95rem;
+    color: #777;
+}
