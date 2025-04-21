@@ -74,37 +74,42 @@ $stmt->close();
 
         <section class="inspection-form">
             <form action="submit_inspection.php" method="POST">
-                <div class="form-grouped" style="display: flex; gap: 1rem; width: 100%;">
+                <div class="form-grouped">
                     <div class="form-group">
                         <label for="location">Location</label>
                         <select id="location" name="location" required onchange="updateAreas()">
                             <option value="1st Floor">1st Floor</option>
                             <option value="2nd Floor">2nd Floor</option>
                             <option value="3rd Floor">3rd Floor</option>
+                            <option value="4th Floor">4th Floor</option>
+                            <option value="5th Floor">5th Floor</option>
+                            <option value="6th Floor">6th Floor</option>
+                            <option value="7th Floor">7th Floor</option>
+                            <option value="8th Floor">8th Floor</option>
                         </select>
                     </div>
 
-
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <div class="input-with-icon">
-                            <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
-                            <img src="source/calendar-icon.png" alt="Calendar Icon" class="input-icon">
-                        </div>
+                        <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="shift">Shift</label>
                         <select id="shift" name="shift" required>
-                            <option value="AM">AM | 9:00</option>
-                            <option value="PM">PM | 5:00</option>
+                            <?php
+                                $currentHour = date('H');
+                                $selectedAM = ($currentHour < 12) ? 'selected' : '';
+                                $selectedPM = ($currentHour >= 12) ? 'selected' : '';
+                            ?>
+                            <option value="AM" <?php echo $selectedAM; ?>>AM | 9:00</option>
+                            <option value="PM" <?php echo $selectedPM; ?>>PM | 5:00</option>
                         </select>
                     </div>
                 </div>
 
-                
-                <div id="areas-container">
-                    <!-- Areas to clean will be dynamically inserted here -->
+                <div id="areas-container" >
+                <!-- Areas to clean will be dynamically inserted here -->
                 </div>
 
                 <button type="submit" class="submit-btn">Submit</button>
@@ -113,6 +118,6 @@ $stmt->close();
     </main>
   </div>
 
-  <script src="inspection.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

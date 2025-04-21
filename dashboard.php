@@ -145,6 +145,6 @@ $result = $conn->query($query);
     </main>
   </div>
 
-  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
