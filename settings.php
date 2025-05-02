@@ -18,6 +18,59 @@ $stmt->fetch();
 $stmt->close();
 ?>
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Include database connection
+    require_once 'db.php';
+
+    // Get form data
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $email = $_POST['email'];
+    $floor_assignment = $_POST['floor_assignment'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Validate passwords
+    if ($password !== $confirm_password) {
+        echo "Passwords do not match.";
+        exit;
+    }
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Handle file upload
+    if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) {
+        $upload_dir = 'uploads/';
+        $file_name = basename($_FILES['picture']['name']);
+        $target_file = $upload_dir . $file_name;
+
+        // Move the uploaded file
+        if (!move_uploaded_file($_FILES['picture']['tmp_name'], $target_file)) {
+            echo "Failed to upload picture.";
+            exit;
+        }
+    } else {
+        echo "Please upload a valid picture.";
+        exit;
+    }
+
+    // Insert data into the database
+    $stmt = $conn->prepare("INSERT INTO staff (first_name, last_name, email, floor_assignment, picture, password) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $first_name, $last_name, $email, $floor_assignment, $target_file, $hashed_password);
+
+    if ($stmt->execute()) {
+        echo "Staff registered successfully.";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,9 +132,52 @@ $stmt->close();
           <tr><td>Carlos Tan</td><td>Janitor</td><td><a href="#">Edit</a></td></tr>
           </tbody>
         </table>
-        <form class="add-staff-form" action="#" method="POST">
-          <input type="text" placeholder="Name" name="staff_name" required />
-          <button type="submit" class="add-btn">Add Staff</button>
+      </section>
+
+      <!-- Staff Registration Section -->
+      <section class="card">
+        <h2>Staff Registration</h2>
+        <form action="register_staff.php" method="POST" enctype="multipart/form-data" class="staff-registration-form">
+          <!-- First Name -->
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
+
+          <!-- Last Name -->
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
+
+          <!-- Email -->
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter email address" required>
+
+          <!-- Floor Assignment -->
+          <label for="floor_assignment">Floor Assignment</label>
+          <select id="floor_assignment" name="floor_assignment" required>
+            <option value="">Select a floor</option>
+            <option value="1st Floor">1st Floor</option>
+            <option value="2nd Floor">2nd Floor</option>
+            <option value="3rd Floor">3rd Floor</option>
+            <option value="4th Floor">4th Floor</option>
+            <option value="5th Floor">5th Floor</option>
+            <option value="6th Floor">6th Floor</option>
+            <option value="7th Floor">7th Floor</option>
+            <option value="8th Floor">8th Floor</option>
+          </select>
+
+          <!-- Picture -->
+          <label for="picture">Profile Picture</label>
+          <input type="file" id="picture" name="picture" accept="image/*" required>
+
+          <!-- Password -->
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+          <!-- Confirm Password -->
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
+
+          <!-- Submit Button -->
+          <button type="submit" class="sbmt">Register Staff</button>
         </form>
       </section>
 
@@ -94,11 +190,6 @@ $stmt->close();
           <input type="password" placeholder="Confirm new password" name="confirm_password" required />
           <button type="submit" class="save-btn">Save</button>
         </form>
-      </section>
-
-      <section class="card">
-        <h2>New Card</h2>
-        <p>This is a new card added to the layout.</p>
       </section>
         
     </div>
