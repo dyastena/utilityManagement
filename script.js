@@ -64,7 +64,6 @@ function updateAreas() {
     return selectedAreas;
 }
 
-// Function to handle button selection and toggle styles
 function selectStatus(button, status) {
     const room = button.closest('.room'); // Get the parent room container
     const statusButtons = room.querySelectorAll('.status-btn'); // Get all buttons in the same room
