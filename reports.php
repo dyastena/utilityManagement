@@ -70,6 +70,27 @@ $stmt->close();
             <h1>Cleaning & Inspection Reports</h1>
             <p>Generate and review system logs and performance summaries</p>
         </header>
+
+
+        <div class="card-container">
+            
+           <section class="card">    
+           <h2 style="text-align: center;">Print Report This Month</h2>
+           <div class="button-group">
+             <button onclick="importToExcel()" class="btn">Import to Excel</button>
+             <button onclick="importToPdf()" class="btn">Import to PDF</button>
+           </div>
+           </section>
+      
+           <section class="card">
+           <h2 style="text-align: center;">Print Report This Week</h2>
+           <p></p>
+           <div class="button-group">
+             <button onclick="importToExcel()" class="btn">Import to Excel</button>
+             <button onclick="importToPdf()" class="btn">Import to PDF</button>
+           </div>
+           </section>
+</div>
     </main>
   </div>
   

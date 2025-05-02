@@ -222,3 +222,86 @@ body {
     font-size: 0.95rem;
     color: #777;
 }
+
+/* Container for cards */
+.card-container {
+  display: flex; /* Enable flexbox layout */
+  gap: 20px; /* Add space between the cards */
+  justify-content: space-between; /* Spread cards across the container */
+  flex-wrap: wrap; /* Allow wrapping if the screen is too small */
+  width: 100%; /* Ensure the container spans the full width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Card styling */
+.card {
+  display: flex; /* Enable flexbox layout */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Push content to the top and bottom */
+  background-color: #fff; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 20px; /* Inner spacing */
+  flex: 1 1 calc(50% - 20px); /* Take 50% of the width minus the gap */
+  min-width: 300px; /* Minimum width for each card */
+  max-width: 100%; /* Allow cards to stretch */
+  min-height: 300px; /* Minimum height for each card */
+  flex-grow: 1; /* Allow cards to grow and fill available space */
+  box-sizing: border-box; /* Include padding and border in width/height calculation */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 100%; /* Stack cards vertically on smaller screens */
+    min-height: auto; /* Allow height to adjust naturally on smaller screens */
+  }
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Card heading styling */
+.card h2 {
+    font-size: 1.5rem; /* Larger font size */
+    margin-bottom: 10px; /* Space below heading */
+    color: #333; /* Dark text color */
+  }
+  
+  /* Card paragraph styling */
+  .card p {
+    font-size: 1rem; /* Standard font size */
+    color: #666; /* Subtle text color */
+    line-height: 1.5; /* Improved readability */
+  }
+  
+  /* Center the button group */
+  .button-group {
+    display: flex; /* Enable flexbox layout */
+    gap: 10px; /* Add space between buttons */
+    justify-content: center; /* Center buttons horizontally */
+    margin-top: auto; /* Push the button group to the bottom */
+  }
+  
+  /* Button styling */
+  .btn {
+    background-color: #74d3aa; /* Blue background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color:  #468a6f /* Darker blue on hover */
+  }
+
+
+
