@@ -17,8 +17,25 @@ $stmt->bind_result($first_name, $last_name, $email, $image);
 $stmt->fetch();
 $stmt->close();
 
-// Fetch floor status data from the database
-$query = "SELECT floor, status, issues_reported, last_cleaned FROM floor_status";
+
+$query = "SELECT 
+    a.Area_Assignment AS floor,
+    s.Area,
+    s.status AS status,
+    i.Date,
+    i.time
+FROM 
+    area_status s
+JOIN 
+    inspection i ON s.inspection_id = i.Inspection_Id
+JOIN 
+    assignment a ON i.ass_id = a.Personel_Id
+WHERE 
+    i.Date = '2025-04-28'  -- Specify the date here, Changed based on the ui
+    AND i.time = '09:00:00'  -- Specify the time here, Changed based on the ui
+ORDER BY 
+    a.Area_Assignment, s.Area, i.Date, i.time;
+";
 $result = $conn->query($query);
 ?>
 
@@ -130,8 +147,8 @@ $result = $conn->query($query);
                 <tr class="status-<?php echo strtolower(str_replace(' ', '', $row['status'])); ?>">
                   <td><?php echo htmlspecialchars($row['floor']); ?></td>
                   <td><?php echo htmlspecialchars($row['status']); ?></td>
-                  <td><?php echo htmlspecialchars($row['issues_reported']); ?></td>
-                  <td><?php echo htmlspecialchars($row['last_cleaned']); ?></td>
+                  <td><?php echo htmlspecialchars($row['Area']); ?></td>
+                  <td><?php echo htmlspecialchars($row['Date']); ?></td>
                 </tr>
               <?php endwhile; ?>
             <?php else: ?>

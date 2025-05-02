@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cleaning Monitoring Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 6px;
+      box-sizing: border-box;
+    }
+    .day-section {
+      margin-bottom: 40px;
+    }
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .input-group {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cleaning Checklist for Monitoring</h1>
+
+  <script>
+    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+    const times = ["9:00 AM", "2:00 PM"];
+    const areas = ["Hallway", "Stairs", "Classroom", "Comfort Room", "Ceiling"];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("checklist-container");
+
+      days.forEach(day => {
+        const section = document.createElement("div");
+        section.className = "day-section";
+        section.innerHTML = `<h2>${day}</h2>`;
+
+        const table = document.createElement("table");
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+
+        headerRow.innerHTML = `<th>Time</th>` + areas.map(area => `<th>${area}</th>`).join('') + `<th>Inspected By</th>`;
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement("tbody");
+        times.forEach(time => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${time}</td>` +
+            areas.map(area => `<td><input type="checkbox" name="${day}_${time}_${area}" /></td>`).join('') +
+            `<td><input type="text" name="${day}_${time}_inspector" /></td>`;
+          tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        section.appendChild(table);
+        container.appendChild(section);
+      });
+    });
+  </script>
+
+  <div id="checklist-container"></div>
+
+  <h2>Feedback/Comments</h2>
+  <div class="feedback-grid">
+    <div><strong>Monday</strong><textarea rows="3" name="comment_monday"></textarea></div>
+    <div><strong>Tuesday</strong><textarea rows="3" name="comment_tuesday"></textarea></div>
+    <div><strong>Wednesday</strong><textarea rows="3" name="comment_wednesday"></textarea></div>
+    <div><strong>Thursday</strong><textarea rows="3" name="comment_thursday"></textarea></div>
+    <div><strong>Friday</strong><textarea rows="3" name="comment_friday"></textarea></div>
+  </div>
+
+  <div class="input-group">
+    <label for="utility">Utility Personnel:</label>
+    <input type="text" id="utility" name="utility_personnel">
+  </div>
+
+  <div class="input-group">
+    <label for="checkedBy">Checked By:</label>
+    <input type="text" id="checkedBy" name="checked_by">
+  </div>
+</body>
+</html>
