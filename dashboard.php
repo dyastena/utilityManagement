@@ -31,7 +31,7 @@ JOIN
 JOIN 
     assignment a ON i.ass_id = a.Personel_Id
 WHERE 
-    i.Date = '2025-04-28'  -- Specify the date here, Changed based on the ui
+    i.Date = '2025-05-02'  -- Specify the date here, Changed based on the ui
     AND i.time = '09:00:00'  -- Specify the time here, Changed based on the ui
 ORDER BY 
     a.Area_Assignment, s.Area, i.Date, i.time;
