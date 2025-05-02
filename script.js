@@ -34,9 +34,12 @@ function updateAreas() {
     // Clear existing areas
     areasContainer.innerHTML = '';
 
+    // Store selected floor areas in a variable
+    const selectedAreas = areas[selectedFloor] || [];
+
     // Add areas for the selected floor
-    if (areas[selectedFloor]) {
-        areas[selectedFloor].forEach((area, index) => {
+    if (selectedAreas.length > 0) {
+        selectedAreas.forEach((area, index) => {
             const roomDiv = document.createElement('div');
             roomDiv.classList.add('room');
 
@@ -47,20 +50,24 @@ function updateAreas() {
                     <button type="button" class="status-btn needs-cleaning" onclick="selectStatus(this, 'Needs cleaning')">Needs Cleaning</button>
                     <button type="button" class="status-btn needs-attention" onclick="selectStatus(this, 'Needs attention')">Needs Attention</button>
                 </div>
-                <input type="hidden" name="area_${index}_status" value="">
+                <input type="hidden" name="areas[${index}][name]" value="${area}">
+                <input type="hidden" name="areas[${index}][status]" class="area-status" value="">
+
                 <div class="comment-container" style="display: none;"></div>
             `;
 
             areasContainer.appendChild(roomDiv);
         });
     }
+    
+    // Return selected areas if needed elsewhere
+    return selectedAreas;
 }
 
-// Function to handle button selection and toggle styles
 function selectStatus(button, status) {
     const room = button.closest('.room'); // Get the parent room container
     const statusButtons = room.querySelectorAll('.status-btn'); // Get all buttons in the same room
-    const hiddenInput = room.querySelector('input[type="hidden"]'); // Get the hidden input for status
+    const hiddenInput = room.querySelector('.area-status'); // now based on class
     const commentContainer = room.querySelector('.comment-container'); // Get the container for comments
 
     // Reset all buttons to their default state
@@ -85,8 +92,8 @@ function selectStatus(button, status) {
 function addCommentInput(container, status) {
     const existingInputs = container.querySelectorAll('.comment-input');
 
-    // Limit the number of comment inputs to 4
-    if (existingInputs.length >= 4) {
+    // Limit the number of comment inputs to 1
+    if (existingInputs.length >= 1) {
         return; // Stop adding new inputs if the limit is reached
     }
 
@@ -97,6 +104,7 @@ function addCommentInput(container, status) {
         const newInput = document.createElement('input');
         newInput.type = "text";
         newInput.name = `comment_${existingInputs.length}`;
+        newInput.name = `areas[${container.closest('.room').querySelector('.area-status').name.match(/\d+/)[0]}][comments][]`;
         newInput.classList.add('comment-input');
         newInput.required = true; // Make the input required
         newInput.style.marginTop = "10px";
