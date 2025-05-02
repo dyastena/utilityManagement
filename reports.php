@@ -84,7 +84,6 @@ $stmt->close();
       
            <section class="card">
            <h2 style="text-align: center;">Print Report This Week</h2>
-           <p></p>
            <div class="button-group">
              <button onclick="importToExcel()" class="btn">Import to Excel</button>
              <button onclick="importToPdf()" class="btn">Import to PDF</button>

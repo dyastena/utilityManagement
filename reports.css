@@ -237,7 +237,8 @@ body {
 .card {
   display: flex; /* Enable flexbox layout */
   flex-direction: column; /* Stack children vertically */
-  justify-content: space-between; /* Push content to the top and bottom */
+  align-items: center; /* Center contents horizontally */
+  justify-content: center; /* Center contents vertically */
   background-color: #fff; /* White background */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -249,6 +250,7 @@ body {
   flex-grow: 1; /* Allow cards to grow and fill available space */
   box-sizing: border-box; /* Include padding and border in width/height calculation */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+  text-align: center; /* Center text inside the card */
 }
 
 /* Responsive behavior */
@@ -268,13 +270,14 @@ body {
 /* Card heading styling */
 .card h2 {
     font-size: 1.5rem; /* Larger font size */
-    margin-bottom: 10px; /* Space below heading */
+    margin-bottom: 5px; /* Space below heading */
     color: #333; /* Dark text color */
   }
   
   /* Card paragraph styling */
   .card p {
     font-size: 1rem; /* Standard font size */
+
     color: #666; /* Subtle text color */
     line-height: 1.5; /* Improved readability */
   }
@@ -284,8 +287,8 @@ body {
     display: flex; /* Enable flexbox layout */
     gap: 10px; /* Add space between buttons */
     justify-content: center; /* Center buttons horizontally */
-    margin-top: auto; /* Push the button group to the bottom */
-  }
+    margin-top: 25px;
+}
   
   /* Button styling */
   .btn {
