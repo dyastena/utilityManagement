@@ -18,8 +18,8 @@ $stmt->fetch();
 $stmt->close();
 
 // Fetch floor status data from the database
-$query = "SELECT floor, status, issues_reported, last_cleaned FROM floor_status";
-$result = $conn->query($query);
+//$query = "SELECT floor, status, issues_reported, last_cleaned FROM floor_status";
+//$result = $conn->query($query);
 ?>
 
 <!DOCTYPE html>

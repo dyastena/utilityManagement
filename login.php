@@ -21,17 +21,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             $_SESSION["user_id"] = $id;
             echo json_encode(["status" => "success", "redirect" => "dashboard.php"]);
+            $stmt->close();
+            $conn->close();
             exit;
         } else {
+            $stmt->close();
+            $conn->close();
             echo json_encode(["status" => "error", "message" => "Invalid password."]);
             exit;
         }
     } else {
+        $stmt->close();
+        $conn->close();
         echo json_encode(["status" => "error", "message" => "No user found with that email."]);
         exit;
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>

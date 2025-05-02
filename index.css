@@ -265,3 +265,90 @@ button.sbmt:hover {
   background-color: #0056b3;
 }
 
+.forgot-password-container {
+  text-align: right; /* Aligns the button to the right */
+  margin-top: 5px; /* Adds some spacing above the button */
+}
+
+.forgot-password-btn {
+  background: none; /* Removes the default button background */
+  border: none; /* Removes the default button border */
+  color: #007BFF; /* Sets the text color to blue */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-size: 14px; /* Sets the font size */
+  padding: 0; /* Removes default padding */
+  text-decoration: none; /* Removes underline */
+}
+
+.forgot-password-btn:hover {
+  text-decoration: underline; /* Adds underline on hover */
+  color: #0056b3; /* Darkens the text color on hover */
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+}
+
+.send-otp-btn,
+.verify-otp-btn {
+  margin-top: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+}
+
+.send-otp-btn:hover,
+.verify-otp-btn:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: green;
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+}
+
+#otp-step {
+  display: none; /* Hidden by default */
+}
+
+#email-step p,
+#otp-step p,
+#email-step label,
+#otp-step label {
+  font-family: 'Inter', sans-serif; /* Apply Inter font */
+}
+

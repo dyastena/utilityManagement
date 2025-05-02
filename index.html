@@ -31,6 +31,11 @@
           </button>
         </div>
 
+        <!-- Add Forgot Password button to the right -->
+        <div class="forgot-password-container">
+          <button type="button" class="forgot-password-btn" onclick="openForgotPasswordModal()">Forgot Password?</button>
+        </div>
+
         <div id="error" class="error-msg"></div>
 
         <button type="submit" class="sbmt">SIGN IN</button>
@@ -38,6 +43,37 @@
       </form>
     </div>
   </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeForgotPasswordModal()">&times;</span>
+      <h2>Forgot Password</h2>
+
+      <!-- Email Input Step -->
+      <div id="email-step">
+        <p>Enter your email to receive an OTP:</p>
+        <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+          <label for="forgot-email">Email</label>
+          <input type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email" required>
+          <button type="submit" class="send-otp-btn">Submit</button>
+        </form>
+      </div>
+
+      <!-- OTP Input Step -->
+      <div id="otp-step" style="display: none;">
+        <p>Enter the OTP sent to your email:</p>
+        <form id="otpForm">
+          <label for="otp-input">OTP</label>
+          <input type="text" id="otp-input" name="otp-input" placeholder="Enter OTP" required>
+          <button type="submit" class="verify-otp-btn">Verify OTP</button>
+        </form>
+      </div>
+
+      <div id="forgot-password-message" class="message"></div>
+    </div>
+  </div>
+
   <script src="login.js"></script>
 </body>
 </html>
