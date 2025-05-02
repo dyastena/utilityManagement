@@ -78,8 +78,8 @@ $result = $conn->query($query);
         <p class = "pi">Track your progress here!</p>
         <div class="date">
             <span id="today-date">21, April 2022</span>
-            <img src="source/calendar.png" alt="Calendar Icon" />
-            </div>
+            <input type="date" id="date-picker" />
+        </div>
       </div>
       
 
@@ -127,7 +127,7 @@ $result = $conn->query($query);
           <tbody>
             <?php if ($result->num_rows > 0): ?>
               <?php while ($row = $result->fetch_assoc()): ?>
-                <tr class="status-<?php echo strtolower(str_replace(' ', '-', $row['status'])); ?>">
+                <tr class="status-<?php echo strtolower(str_replace(' ', '', $row['status'])); ?>">
                   <td><?php echo htmlspecialchars($row['floor']); ?></td>
                   <td><?php echo htmlspecialchars($row['status']); ?></td>
                   <td><?php echo htmlspecialchars($row['issues_reported']); ?></td>
