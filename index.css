@@ -352,3 +352,54 @@ button.sbmt:hover {
   font-family: 'Inter', sans-serif; /* Apply Inter font */
 }
 
+.send-otp-btn, .change-password-btn, .verify-otp-btn {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.send-otp-btn:hover, .change-password-btn:hover, .verify-otp-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.change-password-btn {
+  display: block;
+  width: 100%; /* Full width */
+  padding: 0.75rem; /* Same padding as the Submit button */
+  font-size: 1rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White text */
+  background-color: #007bff; /* Blue background */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.change-password-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.send-otp-btn {
+  display: block;
+  width: 100%; /* Full width */
+  padding: 0.75rem; /* Padding for the button */
+  font-size: 1rem; /* Font size */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White text */
+  background-color: #007bff; /* Blue background */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.send-otp-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+

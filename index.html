@@ -31,7 +31,7 @@
           </button>
         </div>
 
-        <!-- Add Forgot Password button to the right -->
+        <!-- Forgot Password Button -->
         <div class="forgot-password-container">
           <button type="button" class="forgot-password-btn" onclick="openForgotPasswordModal()">Forgot Password?</button>
         </div>
@@ -50,26 +50,49 @@
       <span class="close-btn" onclick="closeForgotPasswordModal()">&times;</span>
       <h2>Forgot Password</h2>
 
-      <!-- Email Input Step -->
-      <div id="email-step">
-        <p>Enter your email to receive an OTP:</p>
-        <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
-          <label for="forgot-email">Email</label>
-          <input type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email" required>
-          <button type="submit" class="send-otp-btn">Submit</button>
-        </form>
-      </div>
+<!-- Email Input Step -->
+<div id="email-step">
+  <p>Enter your email to receive an OTP:</p>
+  <form id="forgotPasswordForm" onsubmit="handleForgotPassword(event)">
+    <label for="forgot-email">Email</label>
+    <input type="email" id="forgot-email" name="forgot-email" placeholder="Enter your email" required>
+    <button type="submit" class="send-otp-btn">Submit</button>
+  </form>
+</div>
 
-      <!-- OTP Input Step -->
-      <div id="otp-step" style="display: none;">
-        <p>Enter the OTP sent to your email:</p>
-        <form id="otpForm">
-          <label for="otp-input">OTP</label>
-          <input type="text" id="otp-input" name="otp-input" placeholder="Enter OTP" required>
-          <button type="submit" class="verify-otp-btn">Verify OTP</button>
-        </form>
-      </div>
+<!-- OTP Notification -->
+<div id="otp-notification" style="display: none;">
+  <p>The OTP has been sent to your email.</p>
+  <button type="button" class="send-otp-btn" onclick="goToOtpStep()">Okay</button>
+</div>
 
+<!-- OTP Input Step -->
+<div id="otp-step" style="display: none;">
+  <p>Enter the OTP sent to your email:</p>
+  <form id="otpForm" onsubmit="handleOtpSubmit(event)">
+    <label for="otp-input">OTP</label>
+    <input type="text" id="otp-input" name="otp-input" placeholder="Enter OTP" required>
+    <button type="submit" class="verify-otp-btn">Verify OTP</button>
+  </form>
+  <div id="countdown-timer" style="margin-top: 10px; font-size: 14px; color: #555;"></div>
+  <div id="resend-otp" style="display: none; margin-top: 10px;">
+    <a href="#" onclick="resendOtp()">Didn't send a code? Click here.</a>
+  </div>
+</div>
+
+<!-- Change Password Step -->
+<div id="change-password-step" style="display: none;">
+  <p>Enter your new password:</p>
+  <form id="changePasswordForm" onsubmit="handleChangePassword(event)">
+    <label for="new-password">New Password</label>
+    <input type="password" id="new-password" name="new-password" placeholder="Enter new password" required>
+    
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm new password" required>
+    
+    <button type="submit" class="change-password-btn">Change Password</button>
+  </form>
+</div>
       <div id="forgot-password-message" class="message"></div>
     </div>
   </div>
