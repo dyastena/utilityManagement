@@ -47,18 +47,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         foreach ($areas as $i => $data) {
             $area = htmlspecialchars($data['name'] ?? 'Unnamed');
             $status = htmlspecialchars($data['status'] ?? 'No status');
-
+        
             echo "<strong>Area:</strong> $area<br>";
             echo "<strong>Status:</strong> $status<br>";
-
-            // Check if the area is clean and append one "OK" comment if it is
+        
             if ($status === "Clean") {
-                // Only add "OK" once for a clean area
-                $fullComment = " OK; ";
+                $fullComment .= "$area: OK; ";
             } elseif (isset($data['comments']) && is_array($data['comments'])) {
-                // For non-clean areas, append the individual comments
                 foreach ($data['comments'] as $comment) {
-                    $fullComment .= "$area: " . htmlspecialchars($comment) . "; ";
+                    $trimmed = trim($comment);
+                    if ($trimmed !== '') {
+                        $fullComment .= "$area: " . htmlspecialchars($trimmed) . "; ";
+                    }
                 }
             }
             echo "<hr>";
@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Insert the concatenated comment
     if (!empty($fullComment)) {
+        $fullComment = trim($fullComment); // <<< Add this line here
         $comment_query = $conn->prepare("INSERT INTO comments (Comments, inspection_id) VALUES (?, ?)");
         $comment_query->bind_param("si", $fullComment, $inspection_id);
         $comment_query->execute();

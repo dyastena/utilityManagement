@@ -136,71 +136,52 @@ function updateAreas() {
 }
 
 function selectStatus(button, status) {
-    const room = button.closest('.room'); // Get the parent room container
-    const statusButtons = room.querySelectorAll('.status-btn'); // Get all buttons in the same room
-    const hiddenInput = room.querySelector('.area-status'); // now based on class
-    const commentContainer = room.querySelector('.comment-container'); // Get the container for comments
+    const room = button.closest(".room");
+    const statusButtons = room.querySelectorAll(".status-btn");
+    const hiddenInput = room.querySelector(".area-status");
+    const commentContainer = room.querySelector(".comment-container");
 
-    // Reset all buttons to their default state
-    statusButtons.forEach(btn => btn.classList.remove('active'));
-
-    // Set the clicked button as active
-    button.classList.add('active');
+    // Reset all buttons and set the clicked button as active
+    statusButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
 
     // Update the hidden input value
     hiddenInput.value = status;
 
-    // Show or hide the comment container based on the selected status
+    // Show or hide the comment container based on the status
     if (status === "Clean") {
-        commentContainer.style.display = "none"; // Hide the comment container
+        commentContainer.style.display = "none";
         commentContainer.innerHTML = ""; // Clear all comment inputs
     } else {
-        commentContainer.style.display = "block"; // Show the comment container
-        addCommentInput(commentContainer, status); // Add the first comment input with the appropriate placeholder
+        commentContainer.style.display = "block";
+        if (commentContainer.children.length === 0) {
+            addCommentInput(commentContainer, status);
+        }
     }
 }
 
 function addCommentInput(container, status) {
-    const existingInputs = container.querySelectorAll('.comment-input');
+    const existingInputs = container.querySelectorAll(".comment-input");
 
     // Limit the number of comment inputs to 3
-    if (existingInputs.length >= 3) {
-        return; // Stop adding new inputs if the limit is reached
-    }
+    if (existingInputs.length >= 3) return;
 
-    const lastInput = existingInputs[existingInputs.length - 1];
+    const newInput = document.createElement("input");
+    newInput.type = "text";
+    newInput.name = `areas[${container.closest(".room").querySelector(".area-status").name.match(/\d+/)[0]}][comments][]`;
+    newInput.classList.add("comment-input");
+    newInput.style.marginTop = "10px";
 
-    // Only add a new input if the last one has text or if no inputs exist
-    if (!lastInput || lastInput.value.trim() !== "") {
-        const newInput = document.createElement('input');
-        newInput.type = "text";
-        newInput.name = `areas[${container.closest('.room').querySelector('.area-status').name.match(/\d+/)[0]}][comments][]`;
-        newInput.classList.add('comment-input');
-        newInput.style.marginTop = "10px";
+    // Set placeholder based on the status
+    newInput.placeholder =
+        status === "Needs cleaning"
+            ? "e.g., Room 101 wet floor"
+            : "e.g., Room 101 broken window";
 
-        // Set placeholder based on the status
-        if (status === "Needs cleaning") {
-            newInput.placeholder = "e.g., Room 101 wet floor";
-        } else if (status === "Needs attention") {
-            newInput.placeholder = "e.g., Room 101 broken window";
-        }
+    // Make the first input required, but not the second or third
+    newInput.required = existingInputs.length === 0;
 
-        // Make the first input required, but not the second or third
-        if (existingInputs.length === 0) {
-            newInput.required = true; // First input is required
-        } else {
-            newInput.required = false; // Second and third inputs are optional
-        }
-
-        // Add an event listener to dynamically add new inputs
-        newInput.addEventListener('input', () => {
-            if (newInput.value.trim() !== "" && existingInputs.length < 3) {
-                addCommentInput(container, status); // Add a new input if the current one has text
-            }
-        });
-
-        container.appendChild(newInput);
-    }
+    container.appendChild(newInput);
 }
 
 function removeEmptyInputs(container) {
@@ -232,3 +213,17 @@ function updateShiftDisplay() {
 
 // Initialize areas for the default selected floor
 document.addEventListener('DOMContentLoaded', updateAreas);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("form");
+    const commentInputs = document.querySelectorAll(".comment-input");
+
+    form.addEventListener("submit", (event) => {
+        // Filter out empty comment inputs
+        commentInputs.forEach((input) => {
+            if (input.value.trim() === "") {
+                input.remove(); // Remove empty comment inputs from the DOM
+            }
+        });
+    });
+});
