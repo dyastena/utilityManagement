@@ -354,9 +354,9 @@ h3{
   color: #333;
 }
 
-.status-clean { background-color: #e3fce3; }
-.status-needscleaning { background-color: #fdf7da; }
-.status-needsattention { background-color: #ffe5e5; }
+.statusclean { background-color: #e3fce3; }
+.statusneedscleaning { background-color: #ffe5e5; }
+.statusneedsattention { background-color: #fdf7da; }
 
 td:nth-child(2) { font-weight: bold; }
 

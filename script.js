@@ -93,12 +93,12 @@ function updateAreas() {
     // Define areas for each floor
     const areas = {
         "1st Floor": ["Hallway", "Canteen", "Function Room", "Comfort Room", "Ceiling"],
-        "2nd Floor": [],
+        "2nd Floor": ["Canteen", "Function Room", "Comfort Room", "Ceiling"],
         "3rd Floor": ["Cafeteria", "Pantry", "Restroom"],
         "4th Floor": ["Library", "Study Room", "Computer Room"],
         "5th Floor": ["Hallway", "Canteen", "Function Room", "Comfort Room", "Ceiling"],
         "6th Floor": ["Hallway", "stairs", "Class Room", "Comfort Room", "Ceiling"],
-        "7th Floor": [""],
+        "7th Floor": ["Hallway", "stairs", "Class Room"],
         "8th Floor": ["Hallway", "stairs", "Gym", "Comfort Room", "Auditorium"],
     };
 

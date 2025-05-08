@@ -160,35 +160,36 @@ $result = $stmt->get_result();
             <?php if ($result->num_rows > 0): ?>
 
               <?php while ($row = $result->fetch_assoc()): ?>
-                  <tr>
+                  <?php
+                      // Process statuses
+                      $statuses = $row['statuses'] ?? '';
+                      $statusArray = explode(',', $statuses); // Split statuses into an array
+                      $filteredStatuses = [];
+
+                      // Filter out "clean" statuses and handle conflicting ones
+                      foreach ($statusArray as $status) {
+                          $trimmedStatus = trim($status);
+                          if (strcasecmp($trimmedStatus, 'Clean') !== 0) {
+                              $filteredStatuses[] = $trimmedStatus;
+                          }
+                      }
+
+                      // Handle specific logic for "Needs cleaning" and "Needs attention"
+                      if (in_array('Needs attention', $filteredStatuses)) {
+                          $finalStatus = 'Needs attention'; // Prioritize "Needs attention"
+                      } elseif (in_array('Needs cleaning', $filteredStatuses)) {
+                          $finalStatus = 'Needs cleaning';
+                      } else {
+                          $finalStatus = 'Clean';
+                      }
+
+                      // Generate the class name based on final status (convert to lowercase and remove spaces)
+                      $className = 'status' . strtolower(str_replace(' ', '', $finalStatus));
+                  ?>
+
+                  <tr class="<?php echo $className; ?>">
                       <td><?php echo htmlspecialchars($row['floor']); ?></td>
-
-                      <?php
-                          // Process statuses
-                          $statuses = $row['statuses'] ?? '';
-                          $statusArray = explode(',', $statuses); // Split statuses into an array
-                          $filteredStatuses = [];
-
-                          // Filter out "clean" statuses and handle conflicting ones
-                          foreach ($statusArray as $status) {
-                              $trimmedStatus = trim($status);
-                              if (strcasecmp($trimmedStatus, 'Clean') !== 0) {
-                                  $filteredStatuses[] = $trimmedStatus;
-                              }
-                          }
-
-                          // Handle specific logic for "Needs cleaning" and "Needs attention"
-                          if (in_array('Needs attention', $filteredStatuses)) {
-                              $finalStatus = 'Needs attention'; // Prioritize "Needs attention"
-                          } elseif (in_array('Needs cleaning', $filteredStatuses)) {
-                              $finalStatus = 'Needs cleaning';
-                          } else {
-                              $finalStatus = 'No issues';
-                          }
-                      ?>
-
                       <td><?php echo htmlspecialchars($finalStatus); ?></td>
-
                       <td>
                           <?php
                               // Process and filter comments
@@ -203,11 +204,12 @@ $result = $stmt->get_result();
                               }
 
                               // Display comments with line breaks
-                              echo count($filteredComments) > 0 ? implode('<br>', $filteredComments) : 'No issues';
+                              echo count($filteredComments) > 0 ? implode('<br>', $filteredComments) : ' -';
                           ?>
                       </td>
                   </tr>
               <?php endwhile; ?>
+
 
 
 
