@@ -13,7 +13,78 @@ document.addEventListener('DOMContentLoaded', () => {
         // Save the collapsed state to localStorage
         localStorage.setItem('sidebarCollapsed', !isCollapsed);
     });
+
+    const datePicker = document.getElementById("date-picker");
+
+    // Function to format today's date as YYYY-MM-DD
+    function getTodayDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const day = String(today.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    // Check if a date is stored in sessionStorage
+    const storedDate = sessionStorage.getItem("selectedDate");
+
+    if (storedDate) {
+        // Set the stored date as the value of the date picker
+        datePicker.value = storedDate;
+    } else {
+        // Set today's date as the default value
+        datePicker.value = getTodayDate();
+    }
+
+    // Save the selected date to sessionStorage when the user changes it
+    window.saveDate = () => {
+        sessionStorage.setItem("selectedDate", datePicker.value);
+    };
+
+    datePicker.addEventListener("change", () => {
+        sessionStorage.setItem("selectedDate", datePicker.value);
+    });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const datePicker = document.getElementById("date-picker");
+    const shiftSelect = document.getElementById("shift");
+
+    // Retrieve the stored date and shift from sessionStorage
+    const storedDate = sessionStorage.getItem("selectedDate");
+    const storedShift = sessionStorage.getItem("selectedShift");
+
+    if (storedDate) {
+        datePicker.value = storedDate;
+    }
+
+    if (storedShift) {
+        shiftSelect.value = storedShift;
+    }
+});
+
+function saveDate() {
+    const datePicker = document.getElementById("date-picker");
+    const shiftSelect = document.getElementById("shift");
+    const selectedDate = datePicker.value;
+    const selectedShift = shiftSelect.value;
+
+    // Save the selected date in sessionStorage
+    sessionStorage.setItem("selectedDate", selectedDate);
+    sessionStorage.setItem("selectedShift", selectedShift);
+
+    // Send the selected date to the server
+    fetch("save_date.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ selectedDate }),
+    });
+
+    // Submit the form to update the table dynamically
+    document.querySelector("form").submit();
+}
 
 function updateAreas() {
     const areasContainer = document.getElementById('areas-container');
@@ -92,8 +163,8 @@ function selectStatus(button, status) {
 function addCommentInput(container, status) {
     const existingInputs = container.querySelectorAll('.comment-input');
 
-    // Limit the number of comment inputs to 1
-    if (existingInputs.length >= 1) {
+    // Limit the number of comment inputs to 3
+    if (existingInputs.length >= 3) {
         return; // Stop adding new inputs if the limit is reached
     }
 
@@ -103,10 +174,8 @@ function addCommentInput(container, status) {
     if (!lastInput || lastInput.value.trim() !== "") {
         const newInput = document.createElement('input');
         newInput.type = "text";
-        newInput.name = `comment_${existingInputs.length}`;
         newInput.name = `areas[${container.closest('.room').querySelector('.area-status').name.match(/\d+/)[0]}][comments][]`;
         newInput.classList.add('comment-input');
-        newInput.required = true; // Make the input required
         newInput.style.marginTop = "10px";
 
         // Set placeholder based on the status
@@ -116,12 +185,17 @@ function addCommentInput(container, status) {
             newInput.placeholder = "e.g., Room 101 broken window";
         }
 
-        // Add an event listener to check for text and dynamically add or remove inputs
+        // Make the first input required, but not the second or third
+        if (existingInputs.length === 0) {
+            newInput.required = true; // First input is required
+        } else {
+            newInput.required = false; // Second and third inputs are optional
+        }
+
+        // Add an event listener to dynamically add new inputs
         newInput.addEventListener('input', () => {
-            if (newInput.value.trim() !== "") {
+            if (newInput.value.trim() !== "" && existingInputs.length < 3) {
                 addCommentInput(container, status); // Add a new input if the current one has text
-            } else {
-                removeEmptyInputs(container); // Remove empty inputs
             }
         });
 
@@ -137,6 +211,23 @@ function removeEmptyInputs(container) {
             container.removeChild(input); // Remove the input if it is empty
         }
     });
+
+    // Ensure the first input is always required
+    const updatedInputs = container.querySelectorAll('.comment-input');
+    if (updatedInputs.length > 0) {
+        updatedInputs[0].required = true; // First input is required
+    }
+}
+
+function updateShiftDisplay() {
+    const shiftSelect = document.getElementById('shift');
+    const selectedOption = shiftSelect.options[shiftSelect.selectedIndex].text;
+
+    // Update the display of the selected shift
+    const timeDisplay = document.querySelector('.time-select span');
+    if (timeDisplay) {
+        timeDisplay.textContent = selectedOption;
+    }
 }
 
 // Initialize areas for the default selected floor

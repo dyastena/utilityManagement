@@ -232,6 +232,48 @@ p.pi {
     font-size: 0.9rem;
 }
 
+/* Style for the date picker container */
+.date {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* Label for the date picker */
+.date label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Date picker input field */
+#date-picker {
+    width: 100%;
+    max-width: 300px; /* Adjust the width as needed */
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Date picker focus state */
+#date-picker:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Optional: Add hover effect */
+#date-picker:hover {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.7); /* Add a glowing effect */
+    transform: scale(1.05); /* Slightly enlarge the input field */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
+}
+
 .welcome h2 {
     margin-top: 3%;
 }
@@ -312,12 +354,49 @@ h3{
   color: #333;
 }
 
-
 .status-clean { background-color: #e3fce3; }
 .status-needscleaning { background-color: #fdf7da; }
 .status-needsattention { background-color: #ffe5e5; }
 
 td:nth-child(2) { font-weight: bold; }
+
+/* Time Select Container */
+.time-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Label for the dropdown */
+.time-select label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Dropdown styling */
+.time-select select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dropdown focus state */
+.time-select select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Optional: Add hover effect */
+.time-select select:hover {
+    border-color: #0056b3;
+}
 
 .time-select {
     font-size: 0.9rem;

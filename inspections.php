@@ -7,6 +7,8 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
+$selectedDate = $_SESSION['selectedDate'] ?? date('Y-m-d');
+
 require_once 'db.php';
 
 // Fetch user details from the database
@@ -91,7 +93,7 @@ $stmt->close();
 
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                        <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($selectedDate); ?>" required>
                     </div>
 
                     <div class="form-group">
@@ -121,5 +123,15 @@ $stmt->close();
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const datePicker = document.getElementById("date");
+        const storedDate = sessionStorage.getItem("selectedDate");
+
+        if (storedDate) {
+            datePicker.value = storedDate;
+        }
+    });
+  </script>
 </body>
 </html>
