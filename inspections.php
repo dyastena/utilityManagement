@@ -116,6 +116,10 @@ $stmt->close();
                 <!-- Areas to clean will be dynamically inserted here -->
                 </div>
 
+                <div class="comment-container">
+                    <!-- Comment boxes will be dynamically added here -->
+                </div>
+
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
         </section>

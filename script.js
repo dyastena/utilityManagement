@@ -181,7 +181,77 @@ function addCommentInput(container, status) {
     // Make the first input required, but not the second or third
     newInput.required = existingInputs.length === 0;
 
+    // Add an event listener to dynamically remove empty inputs
+    newInput.addEventListener("input", () => {
+        const allInputs = container.querySelectorAll(".comment-input");
+
+        // Remove the input if it is empty and not the first input
+        allInputs.forEach((input, index) => {
+            if (index > 0 && input.value.trim() === "") {
+                container.removeChild(input);
+                updateAddButtonPosition(container);
+            }
+        });
+    });
+
     container.appendChild(newInput);
+
+    // Ensure the `+` button is always below the last input
+    updateAddButtonPosition(container);
+}
+
+function updateAddButtonPosition(container) {
+    // Check if the `+` button already exists
+    let addButton = container.querySelector(".add-comment-btn");
+    let removeButton = container.querySelector(".remove-comment-btn");
+
+    if (!addButton) {
+        // Create the `+` button if it doesn't exist
+        addButton = document.createElement("button");
+        addButton.type = "button";
+        addButton.textContent = "+";
+        addButton.classList.add("add-comment-btn");
+        addButton.style.marginTop = "10px";
+
+        // Add click event to the `+` button
+        addButton.addEventListener("click", () => {
+            const lastInput = container.querySelector(".comment-input:last-of-type");
+            if (lastInput && lastInput.value.trim() !== "") {
+                addCommentInput(container, "Needs cleaning"); // Pass the appropriate status
+            } else {
+                alert("Please fill out the last comment box before adding a new one.");
+            }
+        });
+
+        container.appendChild(addButton);
+    }
+
+    if (!removeButton) {
+        // Create the `-` button if it doesn't exist
+        removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "-";
+        removeButton.classList.add("remove-comment-btn");
+        removeButton.style.marginLeft = "10px";
+
+        // Add click event to the `-` button
+        removeButton.addEventListener("click", () => {
+            const allInputs = container.querySelectorAll(".comment-input");
+            if (allInputs.length > 1) {
+                const lastInput = allInputs[allInputs.length - 1];
+                container.removeChild(lastInput);
+                updateAddButtonPosition(container); // Reposition buttons after removal
+            } else {
+                alert("You must keep at least one comment box.");
+            }
+        });
+
+        container.appendChild(removeButton);
+    }
+
+    // Move the `+` and `-` buttons to the end of the container
+    container.appendChild(addButton);
+    container.appendChild(removeButton);
 }
 
 function removeEmptyInputs(container) {
