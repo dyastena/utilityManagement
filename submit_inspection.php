@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $date = $_POST["date"] ?? 'N/A';
-    $shift = $_POST["shift"] ?? 'N/A';q 
+    $shift = $_POST["shift"] ?? 'N/A';
     $areas = $_POST["areas"] ?? [];
 
     // Get the day of the week based on the submitted date

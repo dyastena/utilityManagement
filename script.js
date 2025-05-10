@@ -15,6 +15,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Check saved preference and apply dark mode
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        body.classList.add('dark-mode');
+        if (darkModeToggle) darkModeToggle.checked = true; // Sync toggle state
+    }
+
+    // Toggle dark mode on checkbox change
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    }
+});
+
 function updateAreas() {
     const areasContainer = document.getElementById('areas-container');
     const selectedFloor = document.getElementById('location').value;
@@ -140,5 +165,62 @@ function removeEmptyInputs(container) {
     });
 }
 
+// Function to apply the font size
+function applyFontSize(fontSize) {
+  const root = document.documentElement;
+
+  if (fontSize === 'small') {
+    root.style.fontSize = '12px';
+  } else if (fontSize === 'medium') {
+    root.style.fontSize = '16px';
+  } else if (fontSize === 'large') {
+    root.style.fontSize = '20px';
+  }
+
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    sidebar.style.fontSize = '14px';
+  }
+}
+
+// On page load, check localStorage for saved font size
+document.addEventListener('DOMContentLoaded', function () {
+  const savedFontSize = localStorage.getItem('fontSize') || 'medium'; // Default to 'medium'
+  applyFontSize(savedFontSize);
+
+  // If the font-size selector exists (e.g., on settings.php), set its value
+  const fontSizeSelector = document.getElementById('font-size-selector');
+  if (fontSizeSelector) {
+    fontSizeSelector.value = savedFontSize;
+
+    // Save font size to localStorage and apply it when the user changes it
+    fontSizeSelector.addEventListener('change', function () {
+      const fontSize = this.value;
+      localStorage.setItem('fontSize', fontSize); // Save to localStorage
+      applyFontSize(fontSize); // Apply the font size
+    });
+  }
+});
+
 // Initialize areas for the default selected floor
 document.addEventListener('DOMContentLoaded', updateAreas);
+
+document.addEventListener('DOMContentLoaded', function () {
+  const savedFontSize = localStorage.getItem('fontSize') || '1rem'; // Default to 1rem
+  document.documentElement.style.fontSize = savedFontSize;
+
+  const fontSizeSlider = document.getElementById('font-size-slider');
+  const fontSizeValue = document.getElementById('font-size-value');
+
+  if (fontSizeSlider) {
+    fontSizeSlider.value = parseFloat(savedFontSize) * 16; // Convert rem to px for slider
+    fontSizeValue.textContent = savedFontSize;
+
+    fontSizeSlider.addEventListener('input', function () {
+      const fontSize = `${this.value / 16}rem`; // Convert px to rem
+      fontSizeValue.textContent = fontSize;
+      document.documentElement.style.fontSize = fontSize;
+      localStorage.setItem('fontSize', fontSize);
+    });
+  }
+});

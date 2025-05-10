@@ -8,6 +8,57 @@ body, html {
   box-sizing: border-box;
 }
 
+/* Default (Light Mode) */
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --sidebar-background: #fff;
+    --sidebar-text-color: #000;
+    --card-background: #fff;
+    --card-text-color: #000;
+}
+
+/* Dark Mode */
+:root.dark-mode {
+    --background-color: #000; /* Black background */
+    --text-color: #fff; /* White text */
+    --sidebar-background: #000; /* Black sidebar */
+    --sidebar-text-color: #fff; /* White sidebar text */
+    --card-background: #000; /* Black cards */
+    --card-text-color: #fff; /* White card text */
+}
+
+/* Apply Variables */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.sidebar {
+    background-color: var(--sidebar-background);
+    color: var(--sidebar-text-color);
+}
+
+.card {
+    background-color: var(--card-background);
+    color: var(--card-text-color);
+}
+
+/* Ensure inputs and buttons are styled for dark mode */
+input, button {
+    background-color: var(--card-background);
+    color: var(--card-text-color);
+    border: 1px solid #555; /* Adjust border for visibility */
+}
+
+input::placeholder {
+    color: #aaa; /* Placeholder text color */
+}
+
+button:hover {
+    background-color: #333; /* Slightly lighter black for hover */
+}
+
 /* Main background container */
 .background {
   height: 100vh;

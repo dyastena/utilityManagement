@@ -26,7 +26,7 @@ $stmt->close();
   <title>Settings - NeatWare</title>
   <link rel="stylesheet" href="settings.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 <div class="container">
@@ -46,7 +46,7 @@ $stmt->close();
       <a href="dashboard.php"><i class="fas fa-tachometer-alt nav-icon"></i><span class="nav-text">Dashboard</span></a>
       <a href="inspections.php"><i class="fas fa-clipboard-list nav-icon"></i><span class="nav-text">Inspections</span></a>
       <a href="reports.php"><i class="fas fa-chart-bar nav-icon"></i><span class="nav-text">Reports</span></a>
-      <a href="settings.php" class="active"><i class="fas fa-cogs nav-icon"></i><span class="nav-text">Settings</span></a>
+      <a href="settings.php" class="active"><i class="fa  s fa-cogs nav-icon"></i><span class="nav-text">Settings</span></a>
     </nav>
     <form action="logout.php" method="POST">
       <button type="submit" class="logout-btn">Log Out</button>
@@ -97,13 +97,32 @@ $stmt->close();
       </section>
 
       <section class="card">
+        <h2>Adjust Font Size</h2>
+        <label for="font-size-slider">Font Size:</label>
+        <input type="range" id="font-size-slider" min="12" max="20" step="2" value="16">
+        <span id="font-size-value">16px</span> <!-- Display the current font size -->
+      </section>
+
+      <section class="card">
         <h2>New Card</h2>
         <p>This is a new card added to the layout.</p>
       </section>
+
+
         
     </div>
   </main>
 </div>
 <script src="script.js"></script>
+<script>
+  const fontSizeSlider = document.getElementById('font-size-slider');
+  const fontSizeValue = document.getElementById('font-size-value');
+
+  fontSizeSlider.addEventListener('input', function () {
+    const fontSize = `${this.value}px`;
+    fontSizeValue.textContent = fontSize; // Update the displayed font size
+    document.documentElement.style.fontSize = fontSize; // Apply font size to the root element
+  });
+</script>
 </body>
 </html>

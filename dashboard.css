@@ -26,6 +26,8 @@ body {
     gap: 20px;
     z-index: 1000; /* Ensure it stays above other elements */
     transition: width 0.3s ease, padding 0.3s ease; /* Smooth transition for width and padding */
+    font-size: 14px !important; /* Fix the font size for the sidebar */
+    line-height: 1.5; /* Optional: Adjust line height for better readability */
 }
 
 .sidebar[data-collapsed="true"] {
@@ -250,12 +252,15 @@ h3{
     margin: 1rem 0;
 }
 
+/* Card Styles */
 .card {
-    flex: 1;
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: center;
-    color: #000;
+    flex: 1; /* Allow cards to grow and fill available space */
+    min-width: 300px; /* Ensure cards have a minimum width */
+    max-width: 400px; /* Optional: Limit the maximum width */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
 }
 
 .card img {
@@ -267,6 +272,15 @@ h3{
 .card.red { background: #fddede; }
 .card.yellow { background: #fef9cd; }
 .card.blue { background: #ddeafc; }
+
+/* Card Container Layout */
+.card-container {
+    display: flex; /* Use flexbox for horizontal alignment */
+    flex-wrap: wrap; /* Allow cards to wrap to the next row if needed */
+    gap: 1.5rem; /* Add spacing between cards */
+    margin-top: 2rem; /* Add spacing above the container */
+    justify-content: space-between; /* Distribute cards evenly */
+}
 
 /* Table Section */
 .table-section {
@@ -328,6 +342,72 @@ td:nth-child(2) { font-weight: bold; }
     color: #555;
     text-align: right;
     margin-bottom: 10px;
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .sidebar {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .nav-links a {
+  color: #ffffff;
+}
+
+.dark-mode .nav-links a.active {
+  background-color: #333333;
+}
+
+.dark-mode .main {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .card {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.dark-mode .table-section table {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.dark-mode .table-section table th,
+.dark-mode .table-section table td {
+  border-color: #333333;
+}
+
+/* Settings Page Layout */
+.settings-container {
+    display: grid; /* Use grid layout for precise alignment */
+    grid-template-columns: repeat(2, 1fr); /* Create 2 equal columns */
+    gap: 1.5rem; /* Add spacing between cards */
+    margin-top: 2rem; /* Add spacing above the container */
+}
+
+.settings-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    min-width: 300px; /* Ensure cards have a minimum width */
+    max-width: 400px; /* Optional: Limit the maximum width */
+}
+
+.settings-card h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.settings-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
 }
 
 

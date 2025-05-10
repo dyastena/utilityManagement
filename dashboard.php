@@ -48,7 +48,7 @@ $result = $conn->query($query);
   <link rel="stylesheet" href="dashboard.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+s<body class="<?php echo isset($_COOKIE['darkMode']) && $_COOKIE['darkMode'] === 'enabled' ? 'dark-mode' : ''; ?>">
   <div class="container">
     <aside class="sidebar" data-collapsed="false">
         <div class="logo-container" onclick="toggleSidebar()">
