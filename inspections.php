@@ -7,6 +7,8 @@ if (!isset($_SESSION["user_id"])) {
     exit;
 }
 
+$selectedDate = $_SESSION['selectedDate'] ?? date('Y-m-d');
+
 require_once 'db.php';
 
 // Fetch user details from the database
@@ -91,25 +93,31 @@ $stmt->close();
 
                     <div class="form-group">
                         <label for="date">Date</label>
-                        <input type="date" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" required>
+                        <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($selectedDate); ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="shift">Shift</label>
                         <select id="shift" name="shift" required>
-                            <?php
-                                $currentHour = date('H');
-                                $selectedAM = ($currentHour < 12) ? 'selected' : '';
-                                $selectedPM = ($currentHour >= 12) ? 'selected' : '';
-                            ?>
-                            <option value="AM" <?php echo $selectedAM; ?>>AM | 9:00</option>
-                            <option value="PM" <?php echo $selectedPM; ?>>PM | 5:00</option>
+                                        <?php
+                            // Determine the current time and set the appropriate shift
+                            $currentHour = date('H');
+                            $selectedAM = ($currentHour < 12) ? 'selected' : '';
+                            $selectedPM = ($currentHour >= 12) ? 'selected' : '';
+                        ?>
+                        <!-- Store the time value (09:00 or 14:00) but display AM | PM -->
+                        <option value="09:00" <?php echo $selectedAM; ?>>AM | 9:00</option>
+                        <option value="14:00" <?php echo $selectedPM; ?>>PM | 2:00</option>
                         </select>
                     </div>
                 </div>
 
                 <div id="areas-container" >
                 <!-- Areas to clean will be dynamically inserted here -->
+                </div>
+
+                <div class="comment-container">
+                    <!-- Comment boxes will be dynamically added here -->
                 </div>
 
                 <button type="submit" class="submit-btn">Submit</button>
@@ -119,5 +127,15 @@ $stmt->close();
   </div>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const datePicker = document.getElementById("date");
+        const storedDate = sessionStorage.getItem("selectedDate");
+
+        if (storedDate) {
+            datePicker.value = storedDate;
+        }
+    });
+  </script>
 </body>
 </html>
