@@ -133,3 +133,6 @@ function removeEmptyInputs(container) {
 
 // Initialize areas for the default selected floor
 document.addEventListener('DOMContentLoaded', updateAreas);
+
+
+
