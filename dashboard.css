@@ -297,10 +297,6 @@ h3{
   font-size: 1.1rem;
 }
 
-.table-section tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
 .table-section tr:hover {
   background-color: #f1f1f1;
   cursor: pointer;
@@ -318,8 +314,8 @@ h3{
 
 
 .status-clean { background-color: #e3fce3; }
-.status-check { background-color: #fdf7da; }
-.status-missed { background-color: #ffe5e5; }
+.status-needscleaning { background-color: #fdf7da; }
+.status-needsattention { background-color: #ffe5e5; }
 
 td:nth-child(2) { font-weight: bold; }
 

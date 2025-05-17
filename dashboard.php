@@ -127,7 +127,7 @@ $result = $conn->query($query);
           <tbody>
             <?php if ($result->num_rows > 0): ?>
               <?php while ($row = $result->fetch_assoc()): ?>
-                <tr class="status-<?php echo strtolower(str_replace(' ', '-', $row['status'])); ?>">
+                <tr class="status-<?php echo strtolower(str_replace(' ', '', $row['status'])); ?>">
                   <td><?php echo htmlspecialchars($row['floor']); ?></td>
                   <td><?php echo htmlspecialchars($row['status']); ?></td>
                   <td><?php echo htmlspecialchars($row['issues_reported']); ?></td>

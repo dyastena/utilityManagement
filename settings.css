@@ -227,31 +227,21 @@ body {
 
 /* Card Container */
 .card-container {
-    display: flex;
-    flex-wrap: wrap; /* Allow cards to wrap to the next row */
+    display: block; /* Ensure cards are stacked vertically */
     gap: 1rem; /* Add spacing between the cards */
-    justify-content: left; /* Center the cards horizontally */
-    align-content: flex-start; /* Align items at the top */
     margin-top: -2rem; /* Add spacing between the header and the cards */
+    width: 100%; /* Make the container take up the full width */
 }
 
 /* Individual card styling */
 .card {
-    flex: 1 1 calc(50% - 1rem); /* Allow cards to take up 50% of the container minus the gap */
-    max-width: 800px; /* Set the maximum width for each card */
+    width: 100%; /* Make each card take up the full width of the container */
     background: #fff;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-}
-
-/* Ensure cards stack vertically on smaller screens */
-@media (max-width: 768px) {
-    .card {
-        flex: 1 1 100%; /* Take up 100% of the width on smaller screens */
-        max-width: 100%; /* Remove the max-width restriction for smaller screens */
-    }
+    margin-bottom: 1rem; /* Add spacing below each card */
 }
 
 .form input,
@@ -321,9 +311,47 @@ a:hover {
   padding: 0 20px;
 }
 
-/* Ensure cards take full width on smaller screens */
-@media (max-width: 768px) {
-    .card {
-        flex: 1 1 100%; /* Take up 100% of the width on smaller screens */
-    }
+/* Staff Registration Form */
+.staff-registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Add spacing between form elements */
+  margin-top: 1rem;
+}
+
+.staff-registration-form label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.staff-registration-form input,
+.staff-registration-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.staff-registration-form input[type="file"] {
+  padding: 0.5rem;
+}
+
+.staff-registration-form button.sbmt {
+  margin-top: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.staff-registration-form button.sbmt:hover {
+  background-color: #0056b3;
 }
